@@ -26,19 +26,25 @@ alias server='echo "shasha@47.105.105.185:/home/shasha/downloads"'
 ##[for download]   scp $(server)/downloads/*.AppImage $HOME/downloads
 
 downloadall(){
-        sudo apt install netcat-traditional;
-        sudo apt install shadowsocks-libev net-tools lrzsz;
-        sudo apt install ucspi-tcp;
+	cp -rf  /etc/apt/sources.list  /etc/apt/sources.list_bak &  cp ./sources.list /etc/apt/
+	sudo apt update & apt upgrade 
+	sudo apt -y curl netcat-traditional shadowsocks-libev net-tools lrzsz ucspi-tcp 
         sudo update-alternatives --config nc;
 }
 
 downloadjs(){
-	sudo apt-get install curl
 	sudo curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 	sudo apt-get install -y nodejs
 	sudo npm install -y  yarn
 	npm config set registry https://registry.npm.taobao.org
 }
+
+configvim(){
+       sudo apt install neovim
+       cp -rf  ./.config/nvim $HOME/.config 
+       nvim +PlugInstall +qall
+}
+
 
 p(){
    echo '$1:'${1};
