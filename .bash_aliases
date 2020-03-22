@@ -6,12 +6,12 @@ alias home="cd $HOME"
 alias greph="grep -win -C 4 "
 alias load="source $HOME/.bashrc"
 alias df="df -h "
-alias ll="ls -l"
+alias ll="ls -al"
 alias time-date="date && cal"
 alias findh="find . -name"
 alias ccn="google-chrome --no-proxy-server --user-data-dir=$HOME/chrome-noproxy &"
 alias gith='git add .; git commit -a -m "update"; git push origin master'
-alias downloadalias="sudo wget  https://gitlab.com/autohotel-public/wiki/raw/master/shell/.bash_aliases -P $HOME/ -N "
+alias downloadalias="sudo wget  https://raw.githubusercontent.com/zzsoszz/ide/master/.bash_aliases -P $HOME/ -N "
 alias vi-rc="vi $HOME/.bash_aliases"
 alias netstath="netstat -aux"
 alias ncl="nc -l -p 9000"
@@ -30,7 +30,14 @@ downloadall(){
         sudo apt install shadowsocks-libev net-tools lrzsz;
         sudo apt install ucspi-tcp;
         sudo update-alternatives --config nc;
+}
 
+downloadjs(){
+	sudo apt-get install curl
+	sudo curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+	sudo apt-get install -y nodejs
+	sudo npm install -y  yarn
+	npm config set registry https://registry.npm.taobao.org
 }
 
 p(){
