@@ -48,10 +48,14 @@ configvim(){
  	sudo add-apt-repository ppa:neovim-ppa/stable
  	sudo apt-get update
 	sudo apt-get -y  install neovim	
-       cp -rf  ./.config/nvim $HOME/.config 
-       nvim +PlugInstall +qall
+        cp -rf  ./.config/nvim $HOME/.config 
+        nvim +PlugInstall +qall
 }
 
+configpy(){
+	sudo pip3 install python-language-server pynvim
+	sudo pip install python-language-server pynvim
+}
 
 p(){
    echo '$1:'${1};
