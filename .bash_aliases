@@ -26,10 +26,15 @@ alias server='echo "shasha@47.105.105.185:/home/shasha/downloads"'
 ##[for download]   scp $(server)/downloads/*.AppImage $HOME/downloads
 
 downloadall(){
-	cp -rf  /etc/apt/sources.list  /etc/apt/sources.list_bak &  cp ./sources.list /etc/apt/
-	sudo apt update & apt upgrade 
-	sudo apt -y curl netcat-traditional shadowsocks-libev net-tools lrzsz ucspi-tcp 
-        sudo update-alternatives --config nc;
+	sudo apt-get -y install libcurl3
+	sudo apt install -y curl netcat-traditional shadowsocks-libev net-tools lrzsz ucspi-tcp 
+##      sudo update-alternatives --config nc;
+}
+
+updatesystem(){
+        sudo	cp -rf  /etc/apt/sources.list  /etc/apt/sources.list_bak & sudo   cp -rf  ./sources.list /etc/apt/
+	sudo apt update 
+	sudo apt upgrade 
 }
 
 downloadjs(){
@@ -40,7 +45,9 @@ downloadjs(){
 }
 
 configvim(){
-       sudo apt install neovim
+ 	sudo add-apt-repository ppa:neovim-ppa/stable
+ 	sudo apt-get update
+	sudo apt-get -y  install neovim	
        cp -rf  ./.config/nvim $HOME/.config 
        nvim +PlugInstall +qall
 }
